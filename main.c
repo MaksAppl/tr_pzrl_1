@@ -1,46 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
-long long calc_expression(long long a, char op, long long b)
-{
-    if (op == '+')
-    {
-        return a + b;
-    }
-    if (op == '-')
-    {
-        return a - b;
-    }
-    if (op == '*')
-    {
-        return a * b;
-    }
-    else
-    {
-        return a % b;
-    }
-    // ДОБАВИТЬ ОШИБКИИИ
-}
-
-void decrypt(const long long* results, int count, long long key, char* text)
-{
-    // Переводим каждый результат в символ  вычитая ключ
-    for (int i = 0; i < count; i++)
-    {
-        text[i] = (char)(results[i] - key);
-    }
-    text[count] = '\0';
-}
-
-void print_results(const long long* results, int count, const char* text)
-{
-    for (int i = 0; i < count; i++)
-    {
-        printf("Ответ №%d: %lld\n", i + 1, results[i]);
-    }
-    printf("Результирующая строка: %s\n", text);
-}
+#include "module.h"
 
 int main(void)
 {
@@ -51,11 +9,10 @@ int main(void)
     int count = 0;
     int capacity = 1;
     long long* results = malloc(capacity * sizeof * results);
-
     // Считываем выражения до получения флага -k
-    while (scanf("%63s", tok) == 1 && strcmp(tok, "-k") != 0) {
+    while (scanf("%63s", tok) == 1 && strcmp(tok, "-k") != 0) 
+    {
         a = atoll(tok);
-
         scanf("%7s", op_str);
         if (strchr(op_str, '*') != NULL)
         {
@@ -105,7 +62,7 @@ int main(void)
         return 1;
     }
 
-    // Читаем ключ как слово и проверяем, что оно целиком является числом
+    // Читаем ключ как слово и проверяем что оно целиком является числом
     char* end;
     if (scanf("%63s", tok) != 1)
     {
