@@ -86,6 +86,25 @@ int main(void)
         }
     }
 
+    if (tok[0] == '\0')
+    {
+        printf("Ошибка: пустой ввод\n");
+        free(results);
+        return 1;
+    }
+    if (strcmp(tok, "-k") != 0)
+    {
+        printf("Ошибка: не найден флаг -k\n");
+        free(results);
+        return 1;
+    }
+    if (count == 0)
+    {
+        printf("Ошибка: не задано ни одного выражения\n");
+        free(results);
+        return 1;
+    }
+
     // Читаем ключ как слово и проверяем, что оно целиком является числом
     char* end;
     if (scanf("%63s", tok) != 1)
